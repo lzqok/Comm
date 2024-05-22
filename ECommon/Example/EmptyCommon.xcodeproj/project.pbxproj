@@ -41,10 +41,8 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6C0B21A87AF869C3C4AFFC93 /* Pods-EmptyCommon_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyCommon_Example.release.xcconfig"; path = "Target Support Files/Pods-EmptyCommon_Example/Pods-EmptyCommon_Example.release.xcconfig"; sourceTree = "<group>"; };
 		7A1548A01BA1618605AC6D52 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		9C583A9A79ED53B32ABCBFA0 /* EmptyCommon.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = EmptyCommon.podspec; path = ../EmptyCommon.podspec; sourceTree = "<group>"; };
 		A5F1DC58E3D7E96EFF40B9F5 /* Pods_EmptyCommon_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmptyCommon_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B9967D2BF302E500F935A3 /* WaterFlowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterFlowVC.swift; sourceTree = "<group>"; };
-		B914307F48AD05B394A6151E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +128,6 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				9C583A9A79ED53B32ABCBFA0 /* EmptyCommon.podspec */,
-				B914307F48AD05B394A6151E /* README.md */,
 				7A1548A01BA1618605AC6D52 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
@@ -263,13 +259,13 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EmptyCommon_Example/Pods-EmptyCommon_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/EmptyCommon/EmptyCommon.framework",
+				"${BUILT_PRODUCTS_DIR}/ECommon/ECommon.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EmptyCommon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ECommon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);

@@ -1,5 +1,5 @@
 {
-  "name": "EmptyCommon",
+  "name": "ECommon",
   "version": "0.1.0",
   "summary": "A short description of EmptyCommon.",
   "description": "TODO: Add long description of the pod here.",
@@ -18,7 +18,7 @@
   "platforms": {
     "ios": "10.0"
   },
-  "source_files": "EmptyCommon/Classes/**/*",
+  "source_files": "ECommon/Classes/**/*",
   "dependencies": {
     "SDWebImage": [
 

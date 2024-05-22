@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import EmptyCommon
+import ECommon
 import MJRefresh
 
 class WaterFlowVC: UIViewController,UICollectionViewDataSource,CasadeFlowLayoutDelegate,UICollectionViewDelegateFlowLayout {

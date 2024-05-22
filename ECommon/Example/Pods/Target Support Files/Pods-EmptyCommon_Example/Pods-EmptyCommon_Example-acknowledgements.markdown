@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## EmptyCommon
+## ECommon
 
 Copyright (c) 2024 lzqok <lzqokhooly@live.cn>
 

@@ -12,6 +12,6 @@
 
 #import "IndexAdView.h"
 
-FOUNDATION_EXPORT double EmptyCommonVersionNumber;
-FOUNDATION_EXPORT const unsigned char EmptyCommonVersionString[];
+FOUNDATION_EXPORT double ECommonVersionNumber;
+FOUNDATION_EXPORT const unsigned char ECommonVersionString[];
 

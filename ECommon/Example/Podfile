@@ -3,7 +3,7 @@ use_frameworks!
 platform :ios, '10.0'
 
 target 'EmptyCommon_Example' do
-  pod 'EmptyCommon', :path => '../'
+  pod 'ECommon', :path => '../'
   pod 'MJRefresh'
 #  target 'EmptyCommon_Tests' do
 #    inherit! :search_paths

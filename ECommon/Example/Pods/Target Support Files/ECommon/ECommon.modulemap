@@ -1,0 +1,6 @@
+framework module ECommon {
+  umbrella header "ECommon-umbrella.h"
+
+  export *
+  module * { export * }
+}
