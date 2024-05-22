@@ -1,0 +1,29 @@
+PODS:
+  - EmptyCommon (0.1.0):
+    - SDWebImage
+  - MJRefresh (3.7.6)
+  - SDWebImage (5.19.0):
+    - SDWebImage/Core (= 5.19.0)
+  - SDWebImage/Core (5.19.0)
+
+DEPENDENCIES:
+  - EmptyCommon (from `../`)
+  - MJRefresh
+
+SPEC REPOS:
+  trunk:
+    - MJRefresh
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  EmptyCommon:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  EmptyCommon: d201a7745e422afa59d20eea5131f1b6d66ef03b
+  MJRefresh: 2fe7fb43a5167ceda20bb7e63f130c04fd1814a5
+  SDWebImage: 981fd7e860af070920f249fd092420006014c3eb
+
+PODFILE CHECKSUM: a72e2dc49e112671056d406ffa22ed09d5863e08
+
+COCOAPODS: 1.12.1
