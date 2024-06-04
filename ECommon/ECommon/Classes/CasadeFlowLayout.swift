@@ -167,9 +167,8 @@ public class CasadeFlowLayout: UICollectionViewLayout {
     }
     
     public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        let sectionCount = self.collectionView!.numberOfSections
         var attr = [UICollectionViewLayoutAttributes]()
-        for i in 0..<sectionCount {
+        for i in 0..<self.attrsArray.count {
             attr.append(contentsOf: self.attrsArray[i])
         }
         return attr

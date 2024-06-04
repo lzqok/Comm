@@ -13,7 +13,9 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		B1815A952BFEEF4D00957A52 /* GalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1815A942BFEEF4D00957A52 /* GalleryVC.swift */; };
 		B1B9967E2BF302E500F935A3 /* WaterFlowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B9967D2BF302E500F935A3 /* WaterFlowVC.swift */; };
+		B1CCE1382C087661005A7B3E /* EYLineViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCE1372C087661005A7B3E /* EYLineViewVC.swift */; };
 		E03505FFD0F13641A215940D /* Pods_EmptyCommon_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F1DC58E3D7E96EFF40B9F5 /* Pods_EmptyCommon_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +44,9 @@
 		6C0B21A87AF869C3C4AFFC93 /* Pods-EmptyCommon_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmptyCommon_Example.release.xcconfig"; path = "Target Support Files/Pods-EmptyCommon_Example/Pods-EmptyCommon_Example.release.xcconfig"; sourceTree = "<group>"; };
 		7A1548A01BA1618605AC6D52 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A5F1DC58E3D7E96EFF40B9F5 /* Pods_EmptyCommon_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmptyCommon_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1815A942BFEEF4D00957A52 /* GalleryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryVC.swift; sourceTree = "<group>"; };
 		B1B9967D2BF302E500F935A3 /* WaterFlowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterFlowVC.swift; sourceTree = "<group>"; };
+		B1CCE1372C087661005A7B3E /* EYLineViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EYLineViewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				B1B9967D2BF302E500F935A3 /* WaterFlowVC.swift */,
+				B1815A942BFEEF4D00957A52 /* GalleryVC.swift */,
+				B1CCE1372C087661005A7B3E /* EYLineViewVC.swift */,
 			);
 			name = "Example for EmptyCommon";
 			path = EmptyCommon;
@@ -202,10 +208,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = S3EPGK8YRJ;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = S3EPGK8YRJ;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -304,8 +312,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				B1CCE1382C087661005A7B3E /* EYLineViewVC.swift in Sources */,
 				B1B9967E2BF302E500F935A3 /* WaterFlowVC.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				B1815A952BFEEF4D00957A52 /* GalleryVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,8 +461,9 @@
 			baseConfigurationReference = 1F61793CB8B59F7F54EE341B /* Pods-EmptyCommon_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S3EPGK8YRJ;
 				INFOPLIST_FILE = EmptyCommon/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -467,8 +478,9 @@
 			baseConfigurationReference = 6C0B21A87AF869C3C4AFFC93 /* Pods-EmptyCommon_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S3EPGK8YRJ;
 				INFOPLIST_FILE = EmptyCommon/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -481,6 +493,7 @@
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = S3EPGK8YRJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -502,6 +515,7 @@
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = S3EPGK8YRJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
