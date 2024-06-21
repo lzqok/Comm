@@ -31,7 +31,7 @@ class ViewController: UIViewController, TableMenuDelegate {
             self.present(waterFlowVC, animated: true)
         }else if index == 1 {
             let waterFlowVC = GalleryVC()
-            waterFlowVC.modalPresentationStyle = .fullScreen
+//            waterFlowVC.modalPresentationStyle = .fullScreen
             self.present(waterFlowVC, animated: true)
         }else {
             let lineView = EYLineViewVC()

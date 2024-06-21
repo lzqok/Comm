@@ -141,7 +141,9 @@
 		AEB1D1BE0E555183F13FCC8A9AD268CA /* SDImageCacheDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = CEDF713C211BEFA9700E885CF8BD5DBF /* SDImageCacheDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AF4B3C88EF24097513282E7551F33385 /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D8F180845D19C49D7DE9D7EC0FCC4A /* MJRefreshNormalHeader.m */; };
 		B0CFE4048B103467CB21FF0B8DB35B86 /* NSImage+Compatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4738AF1D8E9645C6EA6EE2F1A11F25 /* NSImage+Compatibility.m */; };
+		B11584212C25165C003EAF38 /* EYPickerConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11584202C25165C003EAF38 /* EYPickerConfigProtocol.swift */; };
 		B1CCE13C2C0D5CFD005A7B3E /* EYDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCE13B2C0D5CFD005A7B3E /* EYDatePickerView.swift */; };
+		B1CCE13E2C0FFCF0005A7B3E /* EYPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCE13D2C0FFCF0005A7B3E /* EYPickerView.swift */; };
 		B1E3D5F20BF3F0F480DE9FBE5B97B5AF /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8F3BA1BD919142AEB5344CDC33B63A /* UIImage+GIF.m */; };
 		B1FCE2CD6EF8CE4F3CFD1F08182724BD /* SDWebImageTransitionInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = F3D04ECA18D2661E54BFB63DFCAA1BA0 /* SDWebImageTransitionInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		B23B1AB11512545FBFEE3006193F65DC /* SDImageCacheDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFA12BBCDD02286F2CDF26A6FC7DC3E /* SDImageCacheDefine.m */; };
@@ -441,7 +443,9 @@
 		B050C900C6BF2C7AE87D6696B008E378 /* SDWeakProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWeakProxy.h; path = SDWebImage/Private/SDWeakProxy.h; sourceTree = "<group>"; };
 		B0B214D775196BA7CA8E17E53048A493 /* SDWebImage */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SDWebImage; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D3004DEA45FBEB2B9F956A32FF9976 /* UIImage+ExtendedCacheData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+ExtendedCacheData.h"; path = "SDWebImage/Core/UIImage+ExtendedCacheData.h"; sourceTree = "<group>"; };
+		B11584202C25165C003EAF38 /* EYPickerConfigProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EYPickerConfigProtocol.swift; sourceTree = "<group>"; };
 		B1CCE13B2C0D5CFD005A7B3E /* EYDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EYDatePickerView.swift; sourceTree = "<group>"; };
+		B1CCE13D2C0FFCF0005A7B3E /* EYPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EYPickerView.swift; sourceTree = "<group>"; };
 		B2600BF2EBF384575B53C1B076DBB006 /* SDAnimatedImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImageView.h; path = SDWebImage/Core/SDAnimatedImageView.h; sourceTree = "<group>"; };
 		B26EE0FE8A5F0F49FE5DC4A6B5948C86 /* SDWebImageDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDefine.h; path = SDWebImage/Core/SDWebImageDefine.h; sourceTree = "<group>"; };
 		B33AB13CDF0D69903AF932D144709892 /* NSBundle+MJRefresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+MJRefresh.m"; path = "MJRefresh/NSBundle+MJRefresh.m"; sourceTree = "<group>"; };
@@ -745,6 +749,8 @@
 				367A4246F3ABF614A8B858DE291DCAD8 /* EYItem.swift */,
 				AB22FD9E3B527809BF71204C97C5E1C8 /* EYLineView.swift */,
 				B1CCE13B2C0D5CFD005A7B3E /* EYDatePickerView.swift */,
+				B1CCE13D2C0FFCF0005A7B3E /* EYPickerView.swift */,
+				B11584202C25165C003EAF38 /* EYPickerConfigProtocol.swift */,
 			);
 			name = EYLineView;
 			path = ECommon/Classes/EYLineView;
@@ -1371,9 +1377,11 @@
 			files = (
 				733434CE8172DD660FA732148266C50E /* CasadeFlowLayout.swift in Sources */,
 				B9B50091CE34D5297F2ECCA6092618AB /* ECommon-dummy.m in Sources */,
+				B1CCE13E2C0FFCF0005A7B3E /* EYPickerView.swift in Sources */,
 				740B0CF6FEF528A86111929C3AF762B6 /* EYItem.swift in Sources */,
 				E8E4F0CB8FB139DEE2A0A7B329B13377 /* EYLineView.swift in Sources */,
 				8D320F24DE305B36BB60F43EAC27FEEA /* GalleryLayout.swift in Sources */,
+				B11584212C25165C003EAF38 /* EYPickerConfigProtocol.swift in Sources */,
 				DEA5353FAD3DF968E049BC0DD9DF82DE /* IndexAdView.m in Sources */,
 				B1CCE13C2C0D5CFD005A7B3E /* EYDatePickerView.swift in Sources */,
 				C05ECB607C391691946A354E4A8AA3F6 /* ReplaceMe.swift in Sources */,

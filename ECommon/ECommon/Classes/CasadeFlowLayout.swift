@@ -216,4 +216,7 @@ public class CasadeFlowLayout: UICollectionViewLayout {
         return attrs
     }
     
+    public override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        return true
+    }
 }

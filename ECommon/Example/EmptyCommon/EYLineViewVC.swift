@@ -36,6 +36,12 @@ class EYLineViewVC: UIViewController {
         for (i,key) in keys.enumerated() {
             let item = EYItem(name: "标题 \(i)",placeholder: "请输入")
             item.canResponse = key != "date"
+            if key == "id" {
+                item.canResponse = false
+            }
+            if !item.canResponse {
+                item.value = "请选择日期"
+            }
             item.valueKey = key
             items.append(item)
         }
@@ -58,6 +64,8 @@ class EYLineViewVC: UIViewController {
             let lineView = EYLineView()
             lineView.delegate = self
             lineView.setInfo(item)
+            lineView.textAlignment = .right
+            lineView.textFont = UIFont.systemFont(ofSize: 15)
             scrollView.addSubview(lineView)
             linViews.append(lineView)
             lineView.marginRight = 50
@@ -67,6 +75,7 @@ class EYLineViewVC: UIViewController {
             lineView.leadingAnchor.constraint(equalTo: relativeView.leadingAnchor).isActive = true
             lineView.widthAnchor.constraint(equalTo: relativeView.widthAnchor).isActive = true
             if index == 0 {
+                lineView.textAlignment = .left
                 lineView.topAnchor.constraint(equalTo: relativeView.topAnchor,constant: 10).isActive = true
             }else {
                 lineView.topAnchor.constraint(equalTo: relativeView.bottomAnchor,constant: 0).isActive = true
@@ -126,29 +135,68 @@ class EYLineViewVC: UIViewController {
 
 extension EYLineViewVC: EYLineViewDelegate {
     func beginEdit(view: ECommon.EYLineView,item: EYItem?) {
-        guard let item = item, item.valueKey == "date" else { return }
-        
-        let config = EYDatePickerConfig()
- 
-        let dataFormate = DateFormatter()
-        dataFormate.dateFormat = "YYYY-MM-dd"
-        
-        let minDate = dataFormate.date(from: "2000-01-01")
-        config.minDate = minDate
-        
-        let date = dataFormate.date(from: "2048-01-01")
-        config.maxDate = date
-        
-        var currentDate = dataFormate.date(from: "2025-02-02")
-        if currentStr != nil {
-            currentDate = dataFormate.date(from: currentStr!)
+        guard let item = item else { return }
+        if (item.valueKey == "date") {
+            let config = EYDatePickerConfig()
+     
+            let dataFormate = DateFormatter()
+            dataFormate.dateFormat = "YYYY-MM-dd"
+            
+            let minDate = dataFormate.date(from: "2000-01-01")
+            config.minDate = minDate
+            
+            let date = dataFormate.date(from: "2048-01-01")
+            config.maxDate = date
+            
+            var currentDate = dataFormate.date(from: "2025-02-02")
+            if currentStr != nil {
+                currentDate = dataFormate.date(from: currentStr!)
+            }
+            config.currentDate = currentDate
+            
+            EYDatePickerView.showDateView(config: config,comfireBlock: {[weak self] value in
+                self?.currentStr = value
+                view.reloadData(value)
+            })
+        }else if (item.valueKey == "id") {
+            
+            let config = EYPickerConfig()
+     
+            let data = EYPickerDataSource()
+            
+            var arr = [EYDataModel]()
+            for i in 0..<10 {
+                let model = EYDataModel()
+                model.title = "first \(i)"
+                arr.append(model)
+                if i == 3 { continue }
+                var arr2 = [EYDataModel]()
+                for j in 2..<10 {
+                    let second = EYDataModel()
+                    second.title = "\(i) - \(j)"
+                    arr2.append(second)
+                    model.datas = arr2
+                    var arr3 = [EYDataModel]()
+                    if j == 6 || j == 2 { continue }
+                    for n in 5..<20 {
+                        let third = EYDataModel()
+                        third.title = "\(i) - \(j) - \(n)"
+                        arr3.append(third)
+                        second.datas = arr3
+                    }
+                }
+            }
+            
+            data.datas = arr
+            config.dataSource = data
+            EYPickerView.showPickerView(config: config) {
+                
+            } comfireBlock: { value in
+                
+            }
+
         }
-        config.currentDate = currentDate
         
-        EYDatePickerView.showDateView(config: config,comfireBlock: {[weak self] value in
-            self?.currentStr = value
-            view.reloadData(value)
-        })
     }
     
     

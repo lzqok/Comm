@@ -1,62 +1,49 @@
 //
-//  EYDatePickerView.swift
+//  EYPickerView.swift
 //  ECommon
 //
-//  Created by empty on 2024/6/3.
+//  Created by empty on 2024/6/5.
 //
 
 import UIKit
 
 @objcMembers
-public class EYDatePickerView: UIView {
-    
-    private lazy var datePicker: UIDatePicker = {
-        let datePicker = UIDatePicker(frame: .zero)
-        datePicker.datePickerMode = .date
-        datePicker.locale = Locale(identifier: "zh_CHS_CN")
-//        [[NSLocale alloc]initWithLocaleIdentifier:@"zh_CHS_CN"];
-        if #available(iOS 13.4, *) {
-            datePicker.preferredDatePickerStyle = .wheels
-        } else {
-            // Fallback on earlier versions
-        }
-//        datePicker.addTarget(self, action: #selector(dateValueChange(_:)), for: .valueChanged)
-        return datePicker
-    }()
+public class EYPickerView: UIView {
+    private let pickerView = UIPickerView()
     
     private let topView = UIView()
     private let topTitleLabel = UILabel()
     private let lineView = UIView()
     private let cancleBtn = UIButton()
     private let comfireBtn = UIButton()
-    private var selectedValue: String?
+    
     private var comfireTrailing: NSLayoutConstraint?
     private var comfireTop: NSLayoutConstraint?
     private var comfireBottom: NSLayoutConstraint?
     private var cancelLeading: NSLayoutConstraint?
     private var cancelTop: NSLayoutConstraint?
     private var cancelBottom: NSLayoutConstraint?
+    static var popupWindow:UIWindow?
     
-    var config: EYDatePickerConfigDelegare? {
+    var config: EYPickerConfigDelegare? {
         didSet {
             self.setConfig()
         }
     }
-    var cancelBlock: (()->Void)?
-    var comfireBlock: ((_ value:String?)->Void)?
     
-    static var popupWindow:UIWindow?
+    var data: EYPickerDataSource?
     
-    private init() {
+    public init() {
         super.init(frame: .zero)
-        initUI()
+        initView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func initUI() {
+    private func initView() {
+        
         self.backgroundColor = UIColor.white
         topView.backgroundColor = UIColor.red
         self.addSubview(topView)
@@ -75,14 +62,10 @@ public class EYDatePickerView: UIView {
         
         topView.addSubview(lineView)
         
-        self.addSubview(datePicker)
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        self.addSubview(pickerView)
         
-
-        self.topTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.topTitleLabel.topAnchor.constraint(equalTo: topView.topAnchor).isActive = true
-        self.topTitleLabel.centerXAnchor.constraint(equalTo: topView.centerXAnchor).isActive = true
-        self.topTitleLabel.bottomAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
-        self.topTitleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 60).isActive = true
         
         self.cancleBtn.translatesAutoresizingMaskIntoConstraints = false
         cancelTop = self.cancleBtn.topAnchor.constraint(equalTo: topView.topAnchor)
@@ -117,28 +100,23 @@ public class EYDatePickerView: UIView {
         self.topView.heightAnchor.constraint(equalToConstant: 45).isActive = true
         
         
-        self.datePicker.translatesAutoresizingMaskIntoConstraints = false
-        self.datePicker.topAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
-        self.datePicker.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        self.datePicker.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        self.datePicker.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        self.pickerView.translatesAutoresizingMaskIntoConstraints = false
+        self.pickerView.topAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
+        self.pickerView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        self.pickerView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        self.pickerView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+    }
+    
+    func cancelAction(_ sender:UIButton) {
+        EYPickerView.dissmiss()
+    }
+    
+    func comfireAction(_ sender:UIButton) {
+        EYPickerView.dissmiss()
     }
     
     private func setConfig() {
         guard let config = config else { return }
-        datePicker.datePickerMode = config.datePickerMode
-        
-        if let minDate = config.minDate {
-            datePicker.minimumDate = minDate
-        }
-        
-        if let currentDate = config.currentDate {
-            datePicker.date = currentDate
-        }
-        
-        if let maxDate = config.maxDate {
-            datePicker.maximumDate = maxDate
-        }
         
         self.backgroundColor = config.backgroundColor
         topView.backgroundColor = config.topBackgroundColor
@@ -168,42 +146,15 @@ public class EYDatePickerView: UIView {
         }
     }
     
-    private func formateDate(date:Date)->String {
-        let dataFormate = DateFormatter()
-        dataFormate.dateFormat = "yyyy-MM-dd"
-        let dateStr = dataFormate.string(from: date)
-        return dateStr
-    }
     
-    func cancelAction(_ sender:UIButton) {
-        self.cancelBlock?()
-        EYDatePickerView.dissmiss()
-    }
-    
-    func comfireAction(_ sender:UIButton) {
-        let selectedValue = formateDate(date: datePicker.date)
-        self.comfireBlock?(selectedValue)
-        EYDatePickerView.dissmiss()
-    }
-    
-    private class func dissmiss() {
-        if self.popupWindow != nil {
-            self.popupWindow?.isHidden = true
-            self.popupWindow = nil
-        }
-    }
-    
-
-    public class func showDateView(config:EYDatePickerConfigDelegare,closeBlock: (()->Void)? = nil, comfireBlock:((_ value:String?)->Void)?){
+    public class func showPickerView(config:EYPickerConfig,closeBlock: (()->Void)? = nil, comfireBlock:((_ value:String?)->Void)?){
         popupWindow = UIWindow(frame: UIScreen.main.bounds)
         popupWindow?.windowLevel = UIWindowLevelAlert + 1.0
         popupWindow?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
-        let pickerView = EYDatePickerView()
+        let pickerView = EYPickerView()
+        pickerView.data = config.dataSource
         pickerView.config = config
-        pickerView.cancelBlock = closeBlock
-        pickerView.comfireBlock = comfireBlock
-        
         // 创建一个临时的视图控制器作为 popupWindow 的根视图控制器
         let tempViewController = UIViewController()
         tempViewController.view.addSubview(pickerView)
@@ -232,19 +183,120 @@ public class EYDatePickerView: UIView {
         popupWindow?.makeKeyAndVisible()
     }
     
+    private class func dissmiss() {
+        if self.popupWindow != nil {
+            self.popupWindow?.isHidden = true
+            self.popupWindow = nil
+        }
+    }
+    
+}
+
+
+extension EYPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return data?.componentNum ?? 0
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return data?.number(component: component) ?? 0
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return data?.getStr(component: component, row: row)
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        data?.selectedIndex(component: component, row: row)
+        pickerView.reloadAllComponents()
+    }
+    
+}
+
+
+public protocol EYData {
+    associatedtype T:EYData
+    var title: String {get set}
+    var datas:[T] { get set }
+}
+
+public class EYDataModel: EYData {
+    public var datas: [EYDataModel] = [EYDataModel]()
+    public var title: String = ""
+    public init() {
+        
+    }
+}
+
+public class EYPickerDataSource {
+    
+    public var datas: [any EYData] = [any EYData]() {
+        didSet {
+            component()
+        }
+    }
+    
+    public private(set) var componentNum = 0
+    private var selectedRows = [Int:Int]()
+    
+    private func component() {
+        var temp = datas
+        var count = 0
+        while temp.count > 0 {
+            count += 1
+            temp = temp[0].datas
+            selectedRows[count-1] = 0
+        }
+        componentNum = count
+    }
+    
+    public func number(component: Int) -> Int {
+        let temp = getComponentList(component: component)
+        return temp.count
+    }
+    
+    public func selectedIndex(component:Int,row:Int) {
+        selectedRows[component] = row
+        
+        var count = 0
+        var temp = datas
+        while temp.count > 0 {
+            let row = selectedRows[count] ?? 0
+            temp = temp[row].datas
+            count += 1
+        }
+        componentNum = count
+    }
+    
+    public func getStr(component: Int, row: Int) -> String? {
+        let temp = getComponentList(component: component)
+        return temp[row].title
+    }
+    
+    private func getComponentList(component: Int)-> [any EYData]{
+        var count = 0
+        var temp = datas
+        while temp.count > 0 {
+            if component == count {
+                break
+            }
+            let row = selectedRows[count] ?? 0
+            temp = temp[row].datas
+            count += 1
+        }
+        return temp
+    }
+    
+    public init() {
+        
+    }
 }
 
 
 @objcMembers
-public class EYDatePickerConfig:NSObject,EYDatePickerConfigDelegare {
+public class EYPickerConfig:NSObject,EYPickerConfigDelegare {
      
     public var lineColor: UIColor? = UIColor(red: 223/255.0, green: 223/255.0, blue: 223/255.0, alpha: 1)
-    
-    public var minDate: Date?
-    
-    public var currentDate: Date?
-    
-    public var maxDate: Date?
     
     public var height: CGFloat = 280
 
@@ -276,7 +328,7 @@ public class EYDatePickerConfig:NSObject,EYDatePickerConfigDelegare {
     
     public var backgroundColor: UIColor? = UIColor.white
     
-    public var datePickerMode: UIDatePickerMode = .date
+    public var dataSource: EYPickerDataSource?
     
     public override init() {
         super.init()

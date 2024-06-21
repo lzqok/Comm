@@ -12,6 +12,8 @@ import MJRefresh
 
 class WaterFlowVC: UIViewController,UICollectionViewDataSource,CasadeFlowLayoutDelegate,UICollectionViewDelegateFlowLayout {
 
+    var trailingCon: NSLayoutConstraint?
+    
     lazy var collectionView = {
         let flowLayout = CasadeFlowLayout()
         flowLayout.delegate = self
@@ -41,16 +43,37 @@ class WaterFlowVC: UIViewController,UICollectionViewDataSource,CasadeFlowLayoutD
         
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
-//            collectionView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0)
-//            collectionView.scrollIndicatorInsets = collectionView.contentInset
+            //            collectionView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0)
+            //            collectionView.scrollIndicatorInsets = collectionView.contentInset
         }
         
         self.view.addSubview(self.collectionView)
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
         self.collectionView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         self.collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        trailingCon = self.collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        trailingCon?.isActive = true
         self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+        let btn = UIButton()
+        btn.setTitle("xxxx", for: .normal)
+        btn.setTitleColor(UIColor.black, for: .normal)
+        btn.addTarget(self, action: #selector(changeFrame), for: .touchUpInside)
+        self.view.addSubview(btn)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        btn.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        btn.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        if #available(iOS 11.0, *) {
+            btn.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        } else {
+            btn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        }
+        
+    }
+    
+    @objc func changeFrame() {
+        trailingCon?.constant = -100
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

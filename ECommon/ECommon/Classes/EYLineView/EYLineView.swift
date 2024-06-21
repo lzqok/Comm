@@ -45,6 +45,14 @@ public class EYLineView: UIView {
             placeholderLabel.font = textFont
         }
     }
+    
+    public var textAlignment: NSTextAlignment = .left {
+        didSet {
+            inputText.textAlignment = textAlignment
+            placeholderLabel.textAlignment = textAlignment
+        }
+    }
+    
     public var showLine = true {
         didSet {
             lineView.isHidden = !showLine
@@ -106,7 +114,7 @@ public class EYLineView: UIView {
         inputText.font = textFont
         inputText.delegate = self
         inputText.textColor = textColor
-        placeholderLabel.textAlignment = .right
+        placeholderLabel.textAlignment = textAlignment
         placeholderLabel.text = "PlaceHolder"
         self.addSubview(inputText)
         self.addSubview(placeholderLabel)
